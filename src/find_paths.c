@@ -6,7 +6,7 @@
 /*   By: thinguye <thinguye@student.42.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 15:04:17 by thinguye          #+#    #+#             */
-/*   Updated: 2021/11/11 16:51:11 by thinguye         ###   ########.fr       */
+/*   Updated: 2021/11/11 16:54:46 by thinguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,7 +170,10 @@ void	find_paths(t_lem *antfarm, t_rooms **rooms)
 		create_paths(antfarm, rooms, queue);
 		ft_printf("END\n");
 	}
-	
+	// save_path()
+	// free(tmp_paths)
+	//run find paths again until no new paths are found
+
 	/*
 	TODO: save path if end found
 	then reset visit values of everything else than the saved path
