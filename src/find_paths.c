@@ -6,7 +6,7 @@
 /*   By: thinguye <thinguye@student.42.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 15:04:17 by thinguye          #+#    #+#             */
-/*   Updated: 2021/11/11 16:54:46 by thinguye         ###   ########.fr       */
+/*   Updated: 2021/11/11 17:05:19 by thinguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,8 @@ int		create_paths(t_lem *antfarm, t_rooms **rooms, t_queue *queue)
 		if (rooms[links[i]]->visited == 0)
 		{
 			not_visited(antfarm, rooms, queue, links[i]);
+			if (ft_strcmp(rooms[links[i]]->name, antfarm->end) == 0)
+				return (1);
 			ft_printf("curr: %d | LINK: %d\n", queue->curr_node, links[i]);
 		}
 		i++;
@@ -167,7 +169,8 @@ void	find_paths(t_lem *antfarm, t_rooms **rooms)
 	while (!is_empty(queue))
 	{
 		queue->curr_node = dequeue(queue);
-		create_paths(antfarm, rooms, queue);
+		if (create_paths(antfarm, rooms, queue) == 1)
+			break ;
 		ft_printf("END\n");
 	}
 	// save_path()
@@ -176,7 +179,8 @@ void	find_paths(t_lem *antfarm, t_rooms **rooms)
 
 	/*
 	TODO: save path if end found
-	then reset visit values of everything else than the saved path
+	then reset visit values of everything else than the saved path.
+	break loop if end is found
 	*/
 
 
