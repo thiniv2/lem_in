@@ -6,7 +6,7 @@
 #    By: thinguye <thinguye@student.42.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/04 14:11:32 by thinguye          #+#    #+#              #
-#    Updated: 2021/10/12 14:24:31 by thinguye         ###   ########.fr        #
+#    Updated: 2021/11/11 15:08:45 by thinguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,13 +22,17 @@ SRC = src/lem_in.c \
 		src/helper.c \
 		src/check_form.c \
 		src/parse_info.c \
-		src/find_path.c
+		src/parse_rooms.c \
+		src/find_paths.c \
+		src/queue.c
 
 OBJ = lem_in.o \
 		helper.o \
 		check_form.o \
 		parse_info.o \
-		find_path.o
+		parse_rooms.o \
+		find_paths.o \
+		queue.o
 
 
 all: $(NAME)

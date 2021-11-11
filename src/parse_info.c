@@ -6,14 +6,14 @@
 /*   By: thinguye <thinguye@student.42.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 17:04:16 by thinguye          #+#    #+#             */
-/*   Updated: 2021/11/09 18:22:10 by thinguye         ###   ########.fr       */
+/*   Updated: 2021/11/11 14:22:51 by thinguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../lem_in.h"
 
-int	parse_info(t_lem *antfarm, t_links *links)
+void	parse_info(t_lem *antfarm, t_links *links)
 {
 	char	*line;
 	char	*str;
@@ -36,5 +36,4 @@ int	parse_info(t_lem *antfarm, t_links *links)
 	}
 	antfarm->map = (char **)malloc(sizeof(char *) * antfarm->room_nbr + 1);
 	antfarm->map = ft_strsplit(str, '\n');
-	return (1);
 }

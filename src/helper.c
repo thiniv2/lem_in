@@ -6,7 +6,7 @@
 /*   By: thinguye <thinguye@student.42.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 16:03:30 by epalomak          #+#    #+#             */
-/*   Updated: 2021/11/09 19:09:10 by thinguye         ###   ########.fr       */
+/*   Updated: 2021/11/11 16:31:01 by thinguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_search_room(t_rooms **rooms, char *str, int count)
 
 	i = 0;
 	while (i < count)
-	{
+	{		
 		if (ft_strcmp(rooms[i]->name, str) == 0)
 			return (i);
 		i++;
@@ -39,21 +39,6 @@ int	ft_search_room(t_rooms **rooms, char *str, int count)
 	return (0);
 }
 
-/*
-int	ft_str_search(char ***names, char *str, int count)
-{
-	int	i;
-
-	i = 0;
-	while (i < count)
-	{
-		if (ft_strcmp(names[i][0], str) == 0)
-			return (0);
-		i++;
-	}
-	return (1);
-}
-*/
 char	*ft_strdup_n(const char *s1)
 {
 	int		i;

@@ -1,0 +1,21 @@
+10
+# rooms
+A 800 500
+B 300 250
+C 500 250
+D 700 250
+E 100 250
+##start
+START 500 60
+##end
+END 500 450
+# links
+B-START
+B-C
+C-START
+END-A
+C-A
+C-END
+START-D
+D-A
+D-E
