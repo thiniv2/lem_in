@@ -6,7 +6,7 @@
 /*   By: thinguye <thinguye@student.42.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 15:00:39 by thinguye          #+#    #+#             */
-/*   Updated: 2021/11/11 15:38:08 by thinguye         ###   ########.fr       */
+/*   Updated: 2021/11/15 15:00:15 by thinguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,7 @@ int		dequeue(t_queue *q)
 t_queue	*init_queue(int size)
 {
 	t_queue	*queue;
-	int		i;
 
-	i = 0;
 	if (!(queue = (t_queue*)malloc(sizeof(t_queue))))
 		display_error(1);
 	if (!(queue->que = (int*)malloc(sizeof(int) * size)))

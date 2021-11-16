@@ -1,0 +1,11 @@
+{
+	"files.associations": {
+		"*.sql": "sql",
+		"cmath": "c",
+		"cstdarg": "c",
+		"cstdio": "c",
+		"cstdlib": "c",
+		"typeinfo": "c",
+		"*.tcc": "cpp"
+	}
+}

@@ -6,7 +6,7 @@
 /*   By: thinguye <thinguye@student.42.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 16:03:30 by epalomak          #+#    #+#             */
-/*   Updated: 2021/11/11 16:31:01 by thinguye         ###   ########.fr       */
+/*   Updated: 2021/11/16 17:34:41 by thinguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,34 @@ void	free_2d_arr(char **arr)
 		y++;
 	}
 	free(arr);
+}
+
+
+void	free_2d_int(t_lem *antfarm, int **arr)
+{
+	int		i;
+
+	i = 0;
+	while (i < antfarm->room_nbr)
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
+}
+
+int		find_empty_slot(int **tmp_paths, int size)
+{
+	int		y;
+
+	y = 0;
+	while (y < size)
+	{
+		if (tmp_paths[y][1] == -1)
+			return (y);
+		y++;
+	}
+	return (0);
 }
 
 int	ft_search_room(t_rooms **rooms, char *str, int count)

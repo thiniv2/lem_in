@@ -6,7 +6,7 @@
 /*   By: thinguye <thinguye@student.42.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 14:13:10 by thinguye          #+#    #+#             */
-/*   Updated: 2021/11/11 14:46:36 by thinguye         ###   ########.fr       */
+/*   Updated: 2021/11/16 17:24:09 by thinguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ void	parse_links(t_lem *antfarm, t_rooms **rooms)
 				link_names = ft_strsplit(antfarm->map[i], '-');
 				room_i = ft_search_room(rooms, link_names[0], antfarm->room_nbr);
 				room_i2 = ft_search_room(rooms, link_names[1], antfarm->room_nbr);
-				link_names = ft_strsplit(antfarm->map[i], '-');
 				rooms[room_i]->room_links[find_index(rooms[room_i]->room_links,
 				rooms[room_i]->link_count)] = room_i2;
 				rooms[room_i2]->room_links[find_index(rooms[room_i2]->room_links,
@@ -87,6 +86,7 @@ void	parse_links(t_lem *antfarm, t_rooms **rooms)
 			}
 		i++;
 	}
+	/*
 	i = 0;
 	while (rooms[i])
 	{
@@ -98,6 +98,7 @@ void	parse_links(t_lem *antfarm, t_rooms **rooms)
 		}
 		i++;
 	}
+	*/
 
 }
 
@@ -116,7 +117,7 @@ void	parse_rooms(t_lem *antfarm, t_rooms **rooms)
 			&& antfarm->map[i][0] != '#' && antfarm->map[i][0] != 'L')
 			{
 				rooms[index] = (t_rooms *)malloc(sizeof(t_rooms));
-				is_room(antfarm->map[i], antfarm->map[i - 1], antfarm, rooms[index]);
+				is_room(i, index, antfarm, rooms[index]);
 				index++;
 			}
 		else if (ft_strchr(antfarm->map[i], '-')

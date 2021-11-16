@@ -6,7 +6,7 @@
 /*   By: thinguye <thinguye@student.42.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 11:35:20 by epalomak          #+#    #+#             */
-/*   Updated: 2021/11/11 16:34:31 by thinguye         ###   ########.fr       */
+/*   Updated: 2021/11/16 17:25:15 by thinguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,18 @@ void	count_links(char *name, t_rooms **rooms, t_lem *antfarm, int i)
 	}
 }
 
-void	is_room(char *line, char *prev_line, t_lem *antfarm, t_rooms *rooms)
+void	is_room(int i, int index, t_lem *antfarm, t_rooms *rooms)
 {
 	char	**name;
 
-	name = ft_strsplit(line, ' ');
-	if (ft_strcmp(prev_line, "##start") == 0)
+	name = ft_strsplit(antfarm->map[i], ' ');
+	if (ft_strcmp(antfarm->map[i - 1], "##start") == 0)
 		antfarm->start = ft_strdup(name[0]);
-	else if (ft_strcmp(prev_line, "##end") == 0)
+	else if (ft_strcmp(antfarm->map[i - 1], "##end") == 0)
+	{
+		antfarm->end_index = index;
 		antfarm->end = ft_strdup(name[0]);
+	}
 	rooms->name = ft_strdup(name[0]);
 	rooms->visited = 0;
 	rooms->link_count = 0;

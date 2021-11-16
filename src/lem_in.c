@@ -6,7 +6,7 @@
 /*   By: thinguye <thinguye@student.42.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 14:16:25 by thinguye          #+#    #+#             */
-/*   Updated: 2021/11/11 15:03:40 by thinguye         ###   ########.fr       */
+/*   Updated: 2021/11/16 17:43:48 by thinguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,15 @@ void	display_error(int i)
 int	main(void)
 {
 	t_lem	*antfarm;
-	t_links	*links;
 	t_rooms	**rooms;
 
-	links = (t_links *)malloc(sizeof(t_links));
+
 	antfarm = (t_lem *)malloc(sizeof(t_lem));
-	parse_info(antfarm, links);
+	parse_info(antfarm);
 	rooms = (t_rooms **)malloc(sizeof(t_rooms) * antfarm->room_nbr);
 	parse_rooms(antfarm, rooms);
+	antfarm->y = 0;
 	find_paths(antfarm, rooms);
+	move_ants(antfarm, rooms);
 	return (0);
 }

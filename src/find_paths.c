@@ -6,7 +6,7 @@
 /*   By: thinguye <thinguye@student.42.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 15:04:17 by thinguye          #+#    #+#             */
-/*   Updated: 2021/11/11 17:05:19 by thinguye         ###   ########.fr       */
+/*   Updated: 2021/11/16 17:38:58 by thinguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	init_new_path(t_lem *antfarm, int y, int res)
 {
 	int	x;
-	
+
 	x = 0;
 	while (x < antfarm->room_nbr)
 	{
@@ -28,26 +28,12 @@ int	init_new_path(t_lem *antfarm, int y, int res)
 	return (res);
 }
 
-int		find_empty_slot(int **tmp_paths, int size)
-{
-	int		y;
-
-	y = 0;
-	while (y < size)
-	{
-		if (tmp_paths[y][1] == -1)
-			return (y);
-		y++;
-	}
-	return (0);
-}
-
-int		copy_paths(t_lem *antfarm, int curr_node)
+int	copy_paths(t_lem *antfarm, int curr_node)
 {
 	int		y;
 	int		x;
 	int		res;
-	
+
 	y = 0;
 	x = 0;
 	res = 0;
@@ -64,70 +50,6 @@ int		copy_paths(t_lem *antfarm, int curr_node)
 			x++;
 		}
 		y++;
-	}
-	return (0);
-}
-
-int		get_curr_index(t_lem *antfarm, int curr_node)
-{
-	int		y;
-	int		x;
-
-	y = 0;
-	x = 0;
-	while (y < antfarm->room_nbr)
-	{
-		x = 0;
-		while (x < antfarm->room_nbr)
-		{
-			if (antfarm->tmp_paths[y][x] == curr_node
-				&& antfarm->tmp_paths[y][x + 1] == -1)
-				return (y);
-			if (antfarm->tmp_paths[y][x] == -1)
-				break ;
-			x++;
-		}
-		y++;
-	}
-	return (copy_paths(antfarm, curr_node));
-}
-
-void	not_visited(t_lem *antfarm, t_rooms **rooms, t_queue *queue, int link)
-{
-	int		i;
-	
-	i = 0;
-	antfarm->i = get_curr_index(antfarm, queue->curr_node);
-	while (i < antfarm->room_nbr)
-	{
-		if (antfarm->tmp_paths[antfarm->i][i] == -1)
-		{
-			antfarm->tmp_paths[antfarm->i][i] = link;
-			rooms[link]->visited = 1;
-			enqueue(queue, link);
-			return ;
-		}
-		i++;
-	}
-}
-
-int		create_paths(t_lem *antfarm, t_rooms **rooms, t_queue *queue)
-{
-	int		*links;
-	int		i;
-	
-	i = 0;
-	links = rooms[queue->curr_node]->room_links;
-	while (i < rooms[queue->curr_node]->link_count)
-	{
-		if (rooms[links[i]]->visited == 0)
-		{
-			not_visited(antfarm, rooms, queue, links[i]);
-			if (ft_strcmp(rooms[links[i]]->name, antfarm->end) == 0)
-				return (1);
-			ft_printf("curr: %d | LINK: %d\n", queue->curr_node, links[i]);
-		}
-		i++;
 	}
 	return (0);
 }
@@ -155,12 +77,29 @@ void	init_array(t_lem *antfarm, int start_index)
 	}
 }
 
+void	save_path(t_lem *antfarm, t_rooms **rooms)
+{
+	int		x;
+
+	x = 0;
+	if (!antfarm->paths)
+		antfarm->paths = (int **)malloc(sizeof(int *) * antfarm->room_nbr);
+	antfarm->paths[antfarm->y] = (int *)malloc(sizeof(int) * antfarm->room_nbr);
+	ft_printf("paths:\n");
+	while (antfarm->tmp_paths[antfarm->i][x] != -1)
+	{
+		antfarm->paths[antfarm->y][x] = antfarm->tmp_paths[antfarm->i][x];
+		ft_printf("%s-", rooms[antfarm->paths[antfarm->y][x]]->name);
+		x++;
+	}
+	ft_printf("\n");
+}
+
 void	find_paths(t_lem *antfarm, t_rooms **rooms)
 {
-	t_queue *queue;
+	t_queue	*queue;
 	int		start_index;
 
-	ft_printf("start: %s\n", antfarm->start);
 	start_index = ft_search_room(rooms, antfarm->start, antfarm->room_nbr);
 	queue = init_queue(antfarm->room_nbr);
 	init_array(antfarm, start_index);
@@ -171,34 +110,11 @@ void	find_paths(t_lem *antfarm, t_rooms **rooms)
 		queue->curr_node = dequeue(queue);
 		if (create_paths(antfarm, rooms, queue) == 1)
 			break ;
-		ft_printf("END\n");
 	}
-	// save_path()
-	// free(tmp_paths)
-	//run find paths again until no new paths are found
-
-	/*
-	TODO: save path if end found
-	then reset visit values of everything else than the saved path.
-	break loop if end is found
-	*/
-
-
-	int i = 0;
-	int	x = 0;
-	while (i < antfarm->room_nbr)
-	{
-		x = 0;
-		while (x < antfarm->room_nbr)
-		{
-			if (antfarm->tmp_paths[i][x] == -1)
-				break ;
-			ft_printf("%s-", rooms[antfarm->tmp_paths[i][x]]->name);
-			x++;
-		}
-		ft_printf("\n");
-		i++;
-	}
-
-	
+	save_path(antfarm, rooms);
+	antfarm->y += 1;
+	free_2d_int(antfarm, antfarm->tmp_paths);
+	reset_values(antfarm, rooms);
+	if (antfarm->y < rooms[antfarm->end_index]->link_count)
+		find_paths(antfarm, rooms);
 }
