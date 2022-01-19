@@ -6,7 +6,7 @@
 /*   By: thinguye <thinguye@student.42.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 15:40:04 by epalomak          #+#    #+#             */
-/*   Updated: 2021/10/04 15:14:24 by thinguye         ###   ########.fr       */
+/*   Updated: 2021/12/14 14:39:39 by thinguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ void	print_p(t_tags *tags)
 	int			count;
 
 	nbr = va_arg(tags->arg, unsigned long);
-//	if (nbr < 0)
-//		nbr *= -1;
 	front = "0x";
 	src = ft_uintmax_itoa_base(nbr, 16, 0);
 	if (tags->dot == '.' && tags->preci == 0 && src[0] == '0')

@@ -6,7 +6,7 @@
 /*   By: thinguye <thinguye@student.42.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 13:29:22 by epalomak          #+#    #+#             */
-/*   Updated: 2021/10/04 15:13:34 by thinguye         ###   ########.fr       */
+/*   Updated: 2021/12/14 14:40:24 by thinguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,6 @@ static	char	*create_str(uintmax_t src, t_tags *tags)
 		hash = "0X";
 	else
 		hash = "0x";
-//	if (src < 0)
-//	{
-//		tags->negative = -1;
-//		src *= -1;
-//	}
 	if (tags->preci == 0 || tags->preci < ft_unb_count(src))
 	{
 		dst = ft_uintmax_itoa_base(src, 16, tags->upp);

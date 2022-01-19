@@ -6,7 +6,7 @@
 #    By: thinguye <thinguye@student.42.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/04 14:11:32 by thinguye          #+#    #+#              #
-#    Updated: 2021/11/16 15:55:50 by thinguye         ###   ########.fr        #
+#    Updated: 2022/01/19 14:50:27 by thinguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,11 @@ SRC = src/lem_in.c \
 		src/find_paths.c \
 		src/queue.c \
 		src/create_paths.c \
-		src/reset_values.c
+		src/reset_values.c \
+		src/move_ants.c \
+		src/go_through_paths.c \
+		src/free_2d.c \
+		src/check_negative.c
 
 OBJ = lem_in.o \
 		helper.o \
@@ -36,7 +40,11 @@ OBJ = lem_in.o \
 		find_paths.o \
 		queue.o \
 		create_paths.o \
-		reset_values.o
+		reset_values.o \
+		move_ants.o \
+		go_through_paths.o \
+		free_2d.o \
+		check_negative.o
 
 
 all: $(NAME)

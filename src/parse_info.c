@@ -6,12 +6,18 @@
 /*   By: thinguye <thinguye@student.42.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 17:04:16 by thinguye          #+#    #+#             */
-/*   Updated: 2021/11/16 17:13:03 by thinguye         ###   ########.fr       */
+/*   Updated: 2022/01/18 12:49:06 by thinguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../lem_in.h"
+
+void	check_errors(t_lem *antfarm)
+{
+	if (antfarm->n_ants <= 0 || antfarm->room_nbr <= 0
+		|| antfarm->n_ants >= INT_MAX || antfarm->boole == -1)
+		display_error(1);
+}
 
 void	parse_info(t_lem *antfarm)
 {
@@ -22,17 +28,21 @@ void	parse_info(t_lem *antfarm)
 	str = ft_strnew(0);
 	while (get_next_line(0, &line))
 	{
-		if (ft_strchr(line, ' ') && !ft_strchr(line, '-') && line[0] != '#'
-			&& line[0] != 'L')
+		if (line[0] != '#' && !antfarm->n_ants)
+			antfarm->n_ants = ft_atoi(line);
+		if (ft_strchr(line, ' ') && !ft_strchr(line, '-')
+			&& line[0] != '#' && line[0] != 'L')
 			antfarm->room_nbr++;
-		
+		if (line[0] == '\0')
+			antfarm->boole = -1;
 		tmp = ft_strjoin(str, line);
 		free(str);
 		str = ft_strdup_n(tmp);
-		write(1, line, ft_strlen(line));
-		write(1, "\n", 1);
-		
+		free(line);
+		free(tmp);
 	}
-	antfarm->map = (char **)malloc(sizeof(char *) * antfarm->room_nbr + 1);
+	write(1, str, ft_strlen(str));
+	check_errors(antfarm);
 	antfarm->map = ft_strsplit(str, '\n');
+	free(str);
 }

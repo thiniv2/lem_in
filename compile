@@ -1,2 +1,2 @@
 make re
-./lem_in < maps/6room_names
+./lem_in < maps/medium_map | cat -e

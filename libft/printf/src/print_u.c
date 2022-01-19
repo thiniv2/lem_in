@@ -6,7 +6,7 @@
 /*   By: thinguye <thinguye@student.42.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 15:04:27 by epalomak          #+#    #+#             */
-/*   Updated: 2021/10/04 15:14:04 by thinguye         ###   ########.fr       */
+/*   Updated: 2021/12/14 14:40:06 by thinguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,9 @@ static	char	*create_str(uintmax_t src, t_tags *tags)
 
 	if (tags->preci == 0 && tags->flags[0] == ' ')
 	{
-//		if (src < 0)
-//			tags->negative = -1;
 		dst = ft_uintmax_itoa(src);
 		return (dst);
 	}
-//	if (src < 0)
-//	{
-//		src *= -1;
-//		tags->negative = -1;
-//	}
 	dst = ft_uintmax_itoa(src);
 	return (dst);
 }

@@ -6,40 +6,27 @@
 /*   By: thinguye <thinguye@student.42.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 16:03:30 by epalomak          #+#    #+#             */
-/*   Updated: 2021/11/16 17:34:41 by thinguye         ###   ########.fr       */
+/*   Updated: 2021/12/16 22:08:21 by thinguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lem_in.h"
 
-void	free_2d_arr(char **arr)
+int	find_index(int *arr, int size)
 {
-	int		y;
-
-	y = 0;
-	while(arr[y])
-	{
-		free(arr[y]);
-		y++;
-	}
-	free(arr);
-}
-
-
-void	free_2d_int(t_lem *antfarm, int **arr)
-{
-	int		i;
+	int	i;
 
 	i = 0;
-	while (i < antfarm->room_nbr)
+	while (i < size)
 	{
-		free(arr[i]);
+		if (arr[i] == -1)
+			return (i);
 		i++;
 	}
-	free(arr);
+	return (i);
 }
 
-int		find_empty_slot(int **tmp_paths, int size)
+int	find_empty_slot(int **tmp_paths, int size)
 {
 	int		y;
 
@@ -53,7 +40,22 @@ int		find_empty_slot(int **tmp_paths, int size)
 	return (0);
 }
 
-int	ft_search_room(t_rooms **rooms, char *str, int count)
+int	ft_check_end(t_lem *antfarm, t_rooms **rooms)
+{
+	int	i;
+
+	i = 0;
+	while (antfarm->tmp_paths[antfarm->i][i] != -1)
+	{
+		if (ft_strcmp(rooms[antfarm->tmp_paths[antfarm->i][i]]->name,
+			antfarm->end) == 0)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int	search_room(t_rooms **rooms, char *str, int count)
 {
 	int	i;
 
@@ -64,10 +66,10 @@ int	ft_search_room(t_rooms **rooms, char *str, int count)
 			return (i);
 		i++;
 	}
-	return (0);
+	return (INT_MAX);
 }
 
-char	*ft_strdup_n(const char *s1)
+char	*ft_strdup_n(char *s1)
 {
 	int		i;
 	int		len;

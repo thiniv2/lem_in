@@ -6,7 +6,7 @@
 /*   By: thinguye <thinguye@student.42.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 15:48:34 by epalomak          #+#    #+#             */
-/*   Updated: 2021/10/04 15:12:18 by thinguye         ###   ########.fr       */
+/*   Updated: 2021/12/14 14:40:09 by thinguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,6 @@ static	int	ft_un_ncount(uintmax_t nb, int base)
 	size_t	c;
 
 	c = 0;
-//	if (nb < 0)
-//	{
-//		c++;
-//		nb = -nb;
-//	}
 	while (nb)
 	{
 		nb /= base;
@@ -53,11 +48,6 @@ char	*ft_uintmax_itoa_base(uintmax_t src, int base, int uppercase)
 		return (0);
 	base_tab = check_upper(uppercase);
 	dst[i--] = '\0';
-//	if (src < 0)
-//	{
-//		src = -src;
-//		dst[0] = '-';
-//	}
 	if (src == 0)
 		dst[0] = '0';
 	while (src)

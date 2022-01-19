@@ -1,48 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_uintmax_toa.c                                   :+:      :+:    :+:   */
+/*   free_2d.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thinguye <thinguye@student.42.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/03 10:49:29 by epalomak          #+#    #+#             */
-/*   Updated: 2021/12/14 14:39:31 by thinguye         ###   ########.fr       */
+/*   Created: 2021/12/02 15:27:19 by thinguye          #+#    #+#             */
+/*   Updated: 2021/12/14 17:47:23 by thinguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers.h"
+#include "../lem_in.h"
 
-int	ft_unb_count(uintmax_t nb)
+void	free_2d_arr(char **arr)
 {
-	long	c;
+	int		y;
 
-	c = 0;
-	while (nb >= 10)
+	y = 0;
+	while (arr[y])
 	{
-		nb = nb / 10;
-		c++;
+		free(arr[y]);
+		y++;
 	}
-	return (c + 1);
+	free(arr);
 }
 
-char	*ft_uintmax_itoa(uintmax_t n)
+void	free_2d_int(t_lem *antfarm, int **arr)
 {
-	uintmax_t	i;
-	char		*dst;
+	int		i;
 
-	i = ft_unb_count(n);
-	dst = ft_strnew(i + 1);
-	if (!dst)
-		return (NULL);
-	else
-		i--;
-	if (n == 0)
-		dst[0] = '0';
-	while (n > 0)
+	i = 0;
+	while (i < antfarm->room_nbr)
 	{
-		dst[i] = (n % 10) + '0';
-		n = n / 10;
-		i--;
+		free(arr[i]);
+		i++;
 	}
-	return (dst);
+	free(arr);
 }

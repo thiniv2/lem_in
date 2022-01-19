@@ -1,48 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_uintmax_toa.c                                   :+:      :+:    :+:   */
+/*   check_negative.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thinguye <thinguye@student.42.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/03 10:49:29 by epalomak          #+#    #+#             */
-/*   Updated: 2021/12/14 14:39:31 by thinguye         ###   ########.fr       */
+/*   Created: 2022/01/19 14:49:31 by thinguye          #+#    #+#             */
+/*   Updated: 2022/01/19 14:58:29 by thinguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers.h"
+#include "../lem_in.h"
 
-int	ft_unb_count(uintmax_t nb)
+int	check_negative_value(char *str)
 {
-	long	c;
+	char	**arr;
+	int		ret1;
+	int		ret2;
 
-	c = 0;
-	while (nb >= 10)
+	arr = ft_strsplit(str, ' ');
+	ret1 = ft_atoi(arr[1]);
+	ret2 = ft_atoi(arr[2]);
+	if (ret1 < 0 || ret2 < 0)
 	{
-		nb = nb / 10;
-		c++;
+		free_2d_arr(arr);
+		return (1);
 	}
-	return (c + 1);
-}
-
-char	*ft_uintmax_itoa(uintmax_t n)
-{
-	uintmax_t	i;
-	char		*dst;
-
-	i = ft_unb_count(n);
-	dst = ft_strnew(i + 1);
-	if (!dst)
-		return (NULL);
-	else
-		i--;
-	if (n == 0)
-		dst[0] = '0';
-	while (n > 0)
-	{
-		dst[i] = (n % 10) + '0';
-		n = n / 10;
-		i--;
-	}
-	return (dst);
+	free_2d_arr(arr);
+	return (0);
 }
