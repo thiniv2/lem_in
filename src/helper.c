@@ -6,7 +6,7 @@
 /*   By: thinguye <thinguye@student.42.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 16:03:30 by epalomak          #+#    #+#             */
-/*   Updated: 2021/12/16 22:08:21 by thinguye         ###   ########.fr       */
+/*   Updated: 2022/01/21 13:00:32 by thinguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	search_room(t_rooms **rooms, char *str, int count)
 
 	i = 0;
 	while (i < count)
-	{		
+	{
 		if (ft_strcmp(rooms[i]->name, str) == 0)
 			return (i);
 		i++;

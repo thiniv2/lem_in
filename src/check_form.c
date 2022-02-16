@@ -6,7 +6,7 @@
 /*   By: thinguye <thinguye@student.42.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 11:35:20 by epalomak          #+#    #+#             */
-/*   Updated: 2022/01/19 14:41:21 by thinguye         ###   ########.fr       */
+/*   Updated: 2022/01/21 13:36:51 by thinguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	is_room(int i, int index, t_lem *antfarm, t_rooms **rooms)
 	char	**name;
 
 	name = ft_strsplit(antfarm->map[i], ' ');
+	if (ft_strchr(name[0], '-'))
+		display_error(1);
 	if (ft_strcmp(antfarm->map[i - 1], "##start") == 0)
 		antfarm->start = ft_strdup(name[0]);
 	else if (ft_strcmp(antfarm->map[i - 1], "##end") == 0)
@@ -50,7 +52,7 @@ void	is_room(int i, int index, t_lem *antfarm, t_rooms **rooms)
 		antfarm->end = ft_strdup(name[0]);
 	}
 	if (search_room(rooms, name[0], index) != INT_MAX)
-		display_error(4);
+		display_error(1);
 	rooms[index]->name = ft_strdup(name[0]);
 	rooms[index]->visited = 0;
 	rooms[index]->link_count = 0;

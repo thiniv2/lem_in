@@ -6,7 +6,7 @@
 /*   By: thinguye <thinguye@student.42.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 17:04:16 by thinguye          #+#    #+#             */
-/*   Updated: 2022/01/18 12:49:06 by thinguye         ###   ########.fr       */
+/*   Updated: 2022/01/21 13:08:23 by thinguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	parse_info(t_lem *antfarm)
 	{
 		if (line[0] != '#' && !antfarm->n_ants)
 			antfarm->n_ants = ft_atoi(line);
-		if (ft_strchr(line, ' ') && !ft_strchr(line, '-')
+		if (ft_strchr(line, ' ')
 			&& line[0] != '#' && line[0] != 'L')
 			antfarm->room_nbr++;
 		if (line[0] == '\0')

@@ -14,9 +14,9 @@ B-START
 B-C
 C-START
 END-A
-C-A
-A-
-C-END
+C-D
+A-C
+C-E ND
 START-D
 D-A
 D-E

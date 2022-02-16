@@ -6,7 +6,7 @@
 /*   By: thinguye <thinguye@student.42.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 12:47:41 by epalomak          #+#    #+#             */
-/*   Updated: 2022/01/19 14:57:33 by thinguye         ###   ########.fr       */
+/*   Updated: 2022/01/21 13:37:56 by thinguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,4 @@ int			ft_check_end(t_lem *antfarm, t_rooms **rooms);
 void		go_through_paths(t_lem *antfarm, t_ants **ants, t_rooms **rooms);
 void		reset_visit_values(t_lem *antfarm, t_rooms **rooms);
 int			find_index(int *arr, int size);
-int			check_negative_value(char *str);
 #endif

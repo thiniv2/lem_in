@@ -6,7 +6,7 @@
 /*   By: thinguye <thinguye@student.42.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 14:13:10 by thinguye          #+#    #+#             */
-/*   Updated: 2022/01/19 14:57:33 by thinguye         ###   ########.fr       */
+/*   Updated: 2022/01/21 13:45:32 by thinguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	parse_links(t_lem *antfarm, t_rooms **rooms)
 			names = ft_strsplit(antfarm->map[i], '-');
 			if (search_room(rooms, names[0], antfarm->room_nbr) == INT_MAX
 				|| search_room(rooms, names[1], antfarm->room_nbr) == INT_MAX)
-				display_error(3);
+				display_error(1);
 			count_links(names[0], rooms, antfarm, i);
 			count_links(names[1], rooms, antfarm, i);
 			free_2d_arr(names);
@@ -97,7 +97,7 @@ void	parse_rooms(t_lem *antfarm, t_rooms **rooms)
 	index = 0;
 	while (antfarm->map[++i])
 	{
-		if (ft_strchr(antfarm->map[i], ' ') && !ft_strchr(antfarm->map[i], '-')
+		if (ft_strchr(antfarm->map[i], ' ')
 			&& antfarm->map[i][0] != '#' && antfarm->map[i][0] != 'L')
 		{
 			rooms[index] = (t_rooms *)malloc(sizeof(t_rooms));
@@ -111,8 +111,7 @@ void	parse_rooms(t_lem *antfarm, t_rooms **rooms)
 				antfarm->link_index = i;
 		}
 		else if (antfarm->map[i][0] != '#')
-			if (check_negative_value(antfarm->map[i]) == 0)
-				display_error(1);
+			display_error(1);
 	}
 	check_index(antfarm->link_index);
 	parse_links(antfarm, rooms);

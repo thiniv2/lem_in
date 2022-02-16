@@ -6,7 +6,7 @@
 /*   By: thinguye <thinguye@student.42.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 14:16:25 by thinguye          #+#    #+#             */
-/*   Updated: 2021/12/16 20:02:44 by thinguye         ###   ########.fr       */
+/*   Updated: 2022/01/21 13:37:02 by thinguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,7 @@
 void	display_error(int i)
 {
 	if (i == 1)
-		ft_printf("Error : Invalid antfarm\n");
-	if (i == 2)
-		ft_printf("Error : Invalid room\n");
-	if (i == 3)
-		ft_printf("Error : Link has a invalid room name\n");
-	if (i == 4)
-		ft_printf("Error : Duplicate room name \n");
+		ft_printf("Error : Invalid map\n");
 	exit(0);
 }
 
